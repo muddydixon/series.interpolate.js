@@ -13,6 +13,7 @@ module.exports = (grunt) ->
           bare: true
         files:
           '<%= dir.dist %>/interpolate.js': '<%= dir.src %>/interpolate.coffee'
+          'test/interpolate_test.js': 'test/interpolate_test.coffee'
 
     simplemocha:
       all:
