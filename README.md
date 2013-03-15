@@ -28,7 +28,9 @@ interpolate([{x: 0, v: 2}, {x: 4, v: 6}, {x: 16, v: 12}, {x: 20, v: 4}], {defaul
 
 # TODO
 
-Write more test...
+1. Write more test...
+2. each data in array must not contain circular reference
+
 
 # Author
 
