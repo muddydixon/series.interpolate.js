@@ -85,6 +85,9 @@
     for (idx = _i = 1, _ref = ts.length - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; idx = 1 <= _ref ? ++_i : --_i) {
       prev = cur;
       cur = getTargetVal(ts[idx], index);
+      if (isNaN(cur - prev)) {
+        continue;
+      }
       if (!stepDist[cur - prev]) {
         stepDist[cur - prev] = 0;
       }
@@ -94,7 +97,7 @@
       var _results;
       _results = [];
       for (step in stepDist) {
-        _results.push(step);
+        _results.push(+step);
       }
       return _results;
     })();

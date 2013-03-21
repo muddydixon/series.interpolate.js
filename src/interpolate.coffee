@@ -72,11 +72,14 @@
     for idx in [1..ts.length - 1]
       prev = cur
       cur  = getTargetVal ts[idx], index
-      
+
+      if isNaN(cur - prev)
+        continue
+        
       stepDist[cur - prev] = 0 unless stepDist[cur - prev]
       stepDist[cur - prev]++
 
-    steps = (step for step of stepDist)
+    steps = (+step for step of stepDist)
 
     if steps.length is 1 then steps[0] else getGCD steps
 
