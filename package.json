@@ -1,7 +1,7 @@
 {
   "name": "interpolate.js",
-  "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
+  "version": "0.0.1",
+  "description": "interplating time series",
   "main": "interpolate.js",
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script -R spec"
