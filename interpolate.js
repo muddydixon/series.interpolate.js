@@ -11,16 +11,25 @@
   }
   interpolate = function(ts, opt) {
     var constructor, cur, defaults, idx, index, interpolateCnt, interpolatedList, ip, prev, step, _i, _ref, _results;
+    if ((ts == null) || ts.length === 0) {
+      return [[], null];
+    }
     opt = opt || {};
     index = opt.index || 'x';
     step = +(opt.step || estimeteStepwise(ts, index));
     defaults = opt.defaults;
     cur = getTargetVal(ts[0], index);
+    if (cur == null) {
+      return [[], null];
+    }
     constructor = ts[0][index] != null ? ts[0][index].constructor : ts[0].constructor;
     idx = 0;
     prev = getTargetVal(ts[idx], index);
     while (++idx < ts.length) {
       cur = getTargetVal(ts[idx], index);
+      if (cur == null) {
+        break;
+      }
       if (cur - prev !== step) {
         interpolateCnt = (cur - prev) / step;
         ip = d3.interpolate(ts[idx - 1], ts[idx]);
@@ -108,6 +117,9 @@
     }
   };
   getTargetVal = function(dat, index) {
+    if (dat == null) {
+      return null;
+    }
     if (typeof dat === 'number' || typeof dat === 'boolean') {
       return dat;
     }

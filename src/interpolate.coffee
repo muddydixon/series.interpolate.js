@@ -7,18 +7,23 @@
   if not d3?
     throw "d3 required"
   interpolate = (ts, opt)->
+    if not ts? or ts.length is 0
+      return [[], null]
     opt = opt or {}
     index = opt.index or 'x'
     step  = +(opt.step  or estimeteStepwise(ts, index))
     defaults = opt.defaults
 
     cur = getTargetVal ts[0], index
+    return [[], null] unless cur?
+    
     constructor = if ts[0][index]? then ts[0][index].constructor else ts[0].constructor
 
     idx = 0
     prev = getTargetVal ts[idx], index
     while ++idx < ts.length
       cur  = getTargetVal ts[idx], index
+      break unless cur?
 
       if cur - prev isnt step
         interpolateCnt = (cur - prev) / step
@@ -85,6 +90,7 @@
 
 
   getTargetVal = (dat, index)->
+    return null unless dat?
     return dat if typeof dat is 'number' or typeof dat is 'boolean'
       
     return dat.getTime() if dat instanceof Date
