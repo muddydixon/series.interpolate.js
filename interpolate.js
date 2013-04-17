@@ -1,6 +1,6 @@
-
 (function(global) {
   var copyObj, d3, estimeteStepwise, getGCD, getTargetVal, interpolate;
+
   if (typeof require !== "undefined") {
     d3 = require('d3');
   } else {
@@ -11,6 +11,7 @@
   }
   interpolate = function(ts, opt) {
     var constructor, cur, defaults, idx, index, interpolateCnt, interpolatedList, ip, prev, step, _i, _ref, _results;
+
     if ((ts == null) || ts.length === 0) {
       return [[], null];
     }
@@ -39,6 +40,7 @@
           return _results;
         }).apply(this).map(function(d) {
           var obj, _index;
+
           obj = ip(d / interpolateCnt);
           if (obj[index] != null) {
             _index = new constructor(obj[index]);
@@ -65,6 +67,7 @@
   };
   copyObj = function(src) {
     var key, obj, opts, val;
+
     if (typeof src === 'string' || typeof src === 'boolean' || typeof src === 'number') {
       return src;
     }
@@ -89,6 +92,7 @@
   };
   estimeteStepwise = function(ts, index) {
     var cur, idx, prev, step, stepDist, steps, _i, _ref;
+
     stepDist = {};
     cur = getTargetVal(ts[0], index);
     for (idx = _i = 1, _ref = ts.length - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; idx = 1 <= _ref ? ++_i : --_i) {
@@ -104,6 +108,7 @@
     }
     steps = (function() {
       var _results;
+
       _results = [];
       for (step in stepDist) {
         _results.push(+step);
@@ -136,8 +141,10 @@
   };
   getGCD = function(arr) {
     var gcd, idx, _getGCD, _i, _ref;
+
     _getGCD = function(a, b) {
       var c;
+
       while (b !== 0) {
         c = a % b;
         a = b;
@@ -162,6 +169,7 @@
   if ((typeof module !== "undefined" && module !== null) && (module.parent == null)) {
     return (function() {
       var expect;
+
       expect = require('chai').expect;
       expect(estimeteStepwise([1, 4, 6, 8])).to.equal(1);
       expect(estimeteStepwise([

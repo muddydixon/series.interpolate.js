@@ -13,7 +13,6 @@ module.exports = (grunt) ->
           bare: true
         files:
           '<%= dir.dist %>/interpolate.js': '<%= dir.src %>/interpolate.coffee'
-          'test/interpolate_test.js': 'test/interpolate_test.coffee'
 
     simplemocha:
       all:
@@ -25,7 +24,7 @@ module.exports = (grunt) ->
         ui: 'bdd'
         reporter: 'spec'
         
-     uglify:
+    uglify:
       all:
         files:
           '<%= dir.dist %>/interpolate.min.js': ['<%= dir.dist %>/interpolate.js']
@@ -36,7 +35,9 @@ module.exports = (grunt) ->
         options:
           interrupt: true
           
-  grunt.loadNpmTasks 'grunt-contrib'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-simple-mocha'
   
   # Default task.
