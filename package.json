@@ -20,7 +20,8 @@
     "grunt-contrib-coffee": "~0.6.6",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-watch": "~0.3.1",
-    "mocha": "~1.9.0"
+    "mocha": "~1.9.0",
+    "coffee-script": "~1.6.2"
   },
   "dependencies": {
     "d3": "~3.1.4"
