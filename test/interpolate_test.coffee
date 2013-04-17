@@ -41,12 +41,14 @@ describe 'Interpolate', ->
     it 'with no opt 3 step complamenting const value', ->
       correct = [0, 3, 10, 9, 10, 10, 10, 10, 10, 27].map (d, idx)-> {x: idx * 3, v: d * d}
 
-      expect(interpolate([0, 3, 9, 27].map((d)-> {x: d, v: d * d}), {defaults: {v: 100}})[0]).to.be.eql correct
+      expect(interpolate([0, 3, 9, 27].map((d)->
+        {x: d, v: d * d}), {defaults: {v: 100}})[0]).to.be.eql correct
       
   describe 'interpolate Date array', ->
     it 'with no opt', ->
       correct = [0..testDataNum].map (d)-> new Date(2013, 0, d)
-      expect(interpolate([0, 3, 5, testDataNum].map((d)-> new Date(2013, 0, d)))[0]).to.deep.equal correct
+      expect(interpolate([0, 3, 5, testDataNum].map((d)->
+        new Date(2013, 0, d)))[0]).to.deep.equal correct
         
     it 'with no opt and object containing Date', ->
       correct = [0..testDataNum].map (d)-> {x: new Date(2013, 0, d)}
@@ -56,7 +58,7 @@ describe 'Interpolate', ->
   describe 'interpolate pseude time series', ->
     it 'with no opt', ->
       correct = [0..testDataNum].map (d)->
-        {x: new Date(2013, 0, d), v: 100 - d}
+        {v: 100 - d, x: new Date(2013, 0, d)}
       testData = correct.slice(0, 1, correct.length - 2).concat(correct[correct.length - 1])
         .concat(d3.shuffle(correct.slice(1, correct.length - 1))
         .slice(0, 0| testDataNum * 0.5))
@@ -66,11 +68,11 @@ describe 'Interpolate', ->
       
     it 'with default value', ->
       correct = [0..testDataNum].map (d)->
-        {x: new Date(2013, 0, d), v: 100 - d}
+        {v: 100 - d, x: new Date(2013, 0, d)}
       correct.filter((d, idx)-> not (idx is 0 or idx is 2 or idx is 3 or idx is testDataNum)).forEach (d)->
         d.v = 0
       testData = [0, 2, 3, testDataNum].map (d)->
-        {x: new Date(2013, 0, d), v: 100 - d}
+        {v: 100 - d, x: new Date(2013, 0, d)}
       expect(interpolate(testData, {defaults: {v: 0}})[0]).to.deep.equal correct
       
 if typeof require is 'undefined'
