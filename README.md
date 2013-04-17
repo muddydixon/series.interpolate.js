@@ -1,5 +1,6 @@
 # interpolate array
 
+[![Build Status](https://secure.travis-ci.org/muddydixon/series.interpolate.js.png?branch=master)](http://travis-ci.org/muddydixon/series.interpolate.js)
 
 ```javascript
 interpolate([0, 1, 2, 4, 5])
